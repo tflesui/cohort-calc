@@ -1,13 +1,19 @@
-// import logo from './logo.svg';
-import './App.css';
+// import './App.css';
 
-import { Button, Container } from 'reactstrap';
+import { Jumbotron, Container } from 'reactstrap';
+import Counter from './components/Counter/Counter';
+
+import Form from './components/Form/Form';
 
 function App() {
   return (
     <div className="App">
-      <Container style={{ marginTop: 20 }}>
-        <Button color="success">Lessgo!</Button>
+      <Container className='text-center'>
+        <h1>Cohort Calculator</h1>
+        <Jumbotron fluid>
+          <Counter />
+          <Form />
+        </Jumbotron>  
       </Container>
     </div>
   );
