@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { Jumbotron, Container } from 'reactstrap';
+
+import Counter from './components/Counter/Counter';
+import Form from './components/Form/Form';
+import StudentList from './components/StudentList/StudentList';
+import MaxHoursProvider from './contexts/MaxHoursContext';
+import StudentsProvider from './contexts/StudentsContext';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <MaxHoursProvider>
+        <StudentsProvider>
+          <Container className='text-center'>
+            <h1>Cohort Calculator</h1>
+            <Jumbotron fluid>
+              <Counter />
+              <Form />
+              <StudentList />
+            </Jumbotron>  
+          </Container>
+        </StudentsProvider>
+      </MaxHoursProvider>
     </div>
   );
 }
