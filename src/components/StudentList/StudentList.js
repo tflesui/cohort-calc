@@ -14,6 +14,7 @@ const StudentList = () => {
           <th>Name</th>
           <th>Earnings Potential</th>
           <th>Instruction Hours Needed</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
