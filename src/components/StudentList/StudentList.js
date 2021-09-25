@@ -10,7 +10,6 @@ const StudentList = () => {
     <Table striped>
       <thead>
         <tr>
-          <th>#</th>
           <th>Name</th>
           <th>Earnings Potential</th>
           <th>Instruction Hours Needed</th>
