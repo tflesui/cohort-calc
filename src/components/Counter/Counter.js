@@ -1,19 +1,31 @@
-import React, { useState } from 'react'
+import './Counter.css';
 
-import { Container, Button } from 'reactstrap'
+import React, { useContext, useEffect, useState } from 'react';
+import { Container, Button } from 'reactstrap';
+import { MaxHoursContext } from '../../contexts/MaxHoursContext';
 
 const Counter = () => {
-  const [hours, setHours] = useState(0)
+  const { maxHours, increaseHours, decreaseHours } = useContext(MaxHoursContext);
+
 
   return (
     <Container style={{ marginTop: 20 }}>
-      <p className="text-primary">Max Instructor Hours: {hours} </p>
-      <Button onClick={() => setHours(hours + 1)} color="success">
-        Increase the hours
+      <p className="text-primary">Max Instructor Hours: {maxHours} </p>
+      <Button 
+        onClick={() => increaseHours(maxHours)} 
+        color="success"
+        style={{
+          marginRight: 5
+        }}>
+        Increase
       </Button> 
-      <Button onClick={() => setHours(hours - 1)} color="danger">
-        Decrease the hours
-      </Button>
+      {
+        maxHours > 0  
+          ?  <Button onClick={() => decreaseHours(maxHours)} color="danger">
+            Decrease
+            </Button>
+          : ''
+      }
     </Container>
   )
 }
