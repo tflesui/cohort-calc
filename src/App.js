@@ -3,6 +3,7 @@ import { Jumbotron, Container } from 'reactstrap';
 import Counter from './components/Counter/Counter';
 import Form from './components/Form/Form';
 import StudentList from './components/StudentList/StudentList';
+import Calculate from './components/Calculate/Calculate';
 import MaxHoursProvider from './contexts/MaxHoursContext';
 import StudentsProvider from './contexts/StudentsContext';
 
@@ -18,6 +19,7 @@ function App() {
               <Counter />
               <Form />
               <StudentList />
+              <Calculate />
             </Jumbotron>  
           </Container>
         </StudentsProvider>
