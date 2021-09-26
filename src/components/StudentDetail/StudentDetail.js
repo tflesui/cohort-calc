@@ -8,7 +8,7 @@ const StudentDetail = ({ student }) => {
   return (
     <tr>
       <td>{student.name}</td>
-      <td>{student.earnings}</td>
+      <td>${new Intl.NumberFormat().format(student.earnings)}</td>
       <td>{student.hoursNeeded}</td>
       <td>
         <Button 
