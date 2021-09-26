@@ -7,7 +7,6 @@ const StudentDetail = ({ student }) => {
   const { removeStudent } = useContext(StudentsContext)
   return (
     <tr>
-      <th scope="row">{student.id}</th>
       <td>{student.name}</td>
       <td>{student.earnings}</td>
       <td>{student.hoursNeeded}</td>

@@ -21,7 +21,7 @@ const Counter = () => {
       </Button> 
       {
         maxHours > 0  
-          ?  <Button onClick={() => decreaseHours(maxHours)} color="danger">
+          ?  <Button onClick={() => decreaseHours(maxHours)} color="danger" style={{marginLeft: 5}}>
             Decrease
             </Button>
           : ''
