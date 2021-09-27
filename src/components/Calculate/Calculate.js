@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button } from 'reactstrap';
 import { MaxHoursContext } from '../../contexts/MaxHoursContext';
 import { StudentsContext } from '../../contexts/StudentsContext';
@@ -6,59 +6,94 @@ import { StudentsContext } from '../../contexts/StudentsContext';
 const Calculate = () => {
   const { students } = useContext(StudentsContext);
   const { maxHours } = useContext(MaxHoursContext);
-  const [total, setTotal] = useState(0)
+  const [total, setTotal] = useState(0);
+  const [finalCohort, setFinalCohort] = useState([])
 
-  const earningsArr = students.map(student => parseFloat(student.earnings));
-  const hrsNeededArr = students.map(student => student.hoursNeeded);
+  // const earningsArr = students.map(student => parseFloat(student.earnings));
+  // const hrsNeededArr = students.map(student => student.hoursNeeded);
 
-  const calcCohort = (earnings, hrsNeeded, maxHrs) => {
-    const n = earnings.length;
-    if (maxHrs <= 0 || n == 0 || hrsNeeded.length != n) return 0;
-  
-    const dp = Array(earnings.length)
-      .fill(0)
-      .map(() => Array(maxHrs + 1).fill(0));
-  
-    // populate the maxHrs=0 columns; with '0' maxHrs we have '0' profit
-    for (let i = 0; i < n; i++) dp[i][0] = 0;
-  
-    // if we have only one weight, we will take it if it is not more than the maxHrs
-    for (let c = 0; c <= maxHrs; c++) {
-      if (hrsNeeded[0] <= c) dp[0][c] = earnings[0];
+  const calcCohort = (cohort, maxHrs) => {    
+    // This implementation uses dynamic programming.
+    // Variable 'memo' is a grid(2-dimentional array) to store optimal solution for sub-problems,
+    // which will be later used as the code execution goes on.
+    // This is called memoization in programming.
+    // The cell will store best solution objects for different capacities and selectable items.
+    let memo = [];
+
+    // Filling the sub-problem solutions grid.
+    for (let i = 0; i < cohort.length; i++) {
+      // Variable 'cap' is the capacity for sub-problems.
+      let row = [];
+      for (let cap = 1; cap <= maxHrs; cap++) {
+        row.push(getSolution(i,cap));
+      }
+      memo.push(row);
     }
-  
-    // process all sub-arrays for all the capacities
-    for (let i = 1; i < n; i++) {
-      for (let c = 1; c <= maxHrs; c++) {
-        let profit1 = 0,
-          profit2 = 0;
-        // include the item, if it is not more than the maxHrs
-        if (hrsNeeded[i] <= c) profit1 = earnings[i] + dp[i - 1][c - hrsNeeded[i]];
-        // exclude the item
-        profit2 = dp[i - 1][c];
-        // take maximum
-        dp[i][c] = Math.max(profit1, profit2);
+
+    // The right-bottom-corner cell of the grid contains the final solution for the whole problem.
+    return(getLast());
+
+    function getLast(){
+      let lastRow = memo[memo.length - 1];
+      return lastRow[lastRow.length - 1];
+    }
+
+    function getSolution(row,cap){
+      const NO_SOLUTION = {maxValue:0, subset:[]};
+      // the column number starts from zero.
+      let col = cap - 1;
+      let lastItem = cohort[row];
+      // The remaining capacity for the sub-problem to solve.
+      let remaining = cap - lastItem.hoursNeeded;
+
+      // Refer to the last solution for this capacity,
+      // which is in the cell of the previous row with the same column
+      let lastSolution = row > 0 ? memo[row - 1][col] || NO_SOLUTION : NO_SOLUTION;
+      // Refer to the last solution for the remaining capacity,
+      // which is in the cell of the previous row with the corresponding column
+      let lastSubSolution = row > 0 ? memo[row - 1][remaining - 1] || NO_SOLUTION : NO_SOLUTION;
+
+      // If any one of the items weights greater than the 'cap', return the last solution
+      if(remaining < 0){
+        return lastSolution;
+      }
+
+      // Compare the current best solution for the sub-problem with a specific capacity
+      // to a new solution trial with the lastItem(new item) added
+      let lastValue = lastSolution.maxValue;
+      let lastSubValue = lastSubSolution.maxValue;
+
+      let newValue = lastSubValue + parseFloat(lastItem.earnings);
+      if(newValue >= lastValue){
+        // copy the subset of the last sub-problem solution
+        let _lastSubSet = lastSubSolution.subset.slice();
+        _lastSubSet.push(lastItem);
+
+        setTotal(newValue);
+
+        const res = []
+        for (let item of _lastSubSet){
+          res.push(item.name)
+          setFinalCohort(res);
+        }
+        return {maxValue: newValue, subset:_lastSubSet};
+      }else{
+        return lastSolution;
       }
     }
-  
-    let selectedHrsNeeded = '';
-    let totalProfit = dp[hrsNeeded.length - 1][maxHrs];
-    let remainingMaxHrs = maxHrs;
-    for (let i = hrsNeeded.length - 1; i > 0; i--) {
-      if (totalProfit != dp[i - 1][remainingMaxHrs]) {
-        selectedHrsNeeded = `${hrsNeeded[i]} ${selectedHrsNeeded}`;
-        remainingMaxHrs -= hrsNeeded[i];
-        totalProfit -= earnings[i];
-      }
+  }
+ 
+  // Funtion to properly format final answer
+  const answer = (amount, names) => {
+    if (names.length === 1) {
+      return `Max Earnings of $${new Intl.NumberFormat().format(amount)} with ${names[0]}`
+    } else if (names.length === 2) {
+      return `Max Earnings of $${new Intl.NumberFormat().format(amount)} with ${names[0]} and ${names[1]}`
+    } else if (names.length > 2) {
+      const finalName = names[names.length - 1];
+      const multiName = names.slice(0, -1);
+      return `Max Earnings of $${new Intl.NumberFormat().format(amount)} with ${multiName.join(', ')} and ${finalName}`
     }
-  
-    if (totalProfit != 0) selectedHrsNeeded = `${hrsNeeded[0]} ${selectedHrsNeeded}`;
-  
-    console.log(`Selected hrsNeeded: ${selectedHrsNeeded}`);
-    console.log(`Total Profit: ${totalProfit}`);
-  
-    // maximum profit will be at the bottom-right corner.
-    setTotal(dp[n - 1][maxHrs]);
   }
   
 
@@ -73,14 +108,20 @@ const Calculate = () => {
               style={{
                 marginBottom: 15
               }}
-              onClick={() => calcCohort(earningsArr, hrsNeededArr, maxHours)}>
+              onClick={() => calcCohort(students, maxHours)}>
                 Calculate
             </Button>
           : ''
       }
       {
         total
-          ? <p>Max Earnings of ${total}</p>
+          ? <div>
+              <p>
+                {
+                  answer(total, finalCohort)
+                }
+              </p>
+            </div>
           : ''
       }
     </div>
