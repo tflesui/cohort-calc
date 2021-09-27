@@ -1,6 +1,6 @@
 import './Counter.css';
 
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { Container, Button } from 'reactstrap';
 import { MaxHoursContext } from '../../contexts/MaxHoursContext';
 
@@ -10,8 +10,9 @@ const Counter = () => {
 
   return (
     <Container style={{ marginTop: 20 }}>
-      <p className="text-primary">Max Instructor Hours: {maxHours} </p>
-      <Button 
+      <p className="text-primary"data-testid='hrsCounter'>Max Instructor Hours: {maxHours} </p>
+      <Button
+        data-testid='increase-button' 
         onClick={() => increaseHours(maxHours)} 
         color="success"
         style={{
@@ -21,7 +22,7 @@ const Counter = () => {
       </Button> 
       {
         maxHours > 0  
-          ?  <Button onClick={() => decreaseHours(maxHours)} color="danger" style={{marginLeft: 5}}>
+          ?  <Button data-testid='decrease-button' onClick={() => decreaseHours(maxHours)} color="danger" style={{marginLeft: 5}}>
             Decrease
             </Button>
           : ''
