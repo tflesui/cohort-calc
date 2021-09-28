@@ -33,7 +33,7 @@ const Form = () => {
   }
 
   return (
-    <StudentForm style={{ margin: 10 }} onSubmit={handleSubmit}>
+    <StudentForm data-testid='form' style={{ margin: 10 }} onSubmit={handleSubmit}>
       <FormGroup className='row'>
         <Label for='studentName' sm={2}>
           Student Name
@@ -41,7 +41,8 @@ const Form = () => {
         <Col sm={4}>
           <Input
             type='text'
-            name='name'
+            name='StudentName'
+            maxLength='30'
             value={name}
             id='studentName'
             placeholder='Student Name'
@@ -56,8 +57,10 @@ const Form = () => {
         </Label>
         <Col sm={4}>
           <Input
-            type='number'
+            type='text'
             name='earnings'
+            pattern='\d*'
+            maxLength='6'
             value={earnings}
             id='earnings'
             placeholder='0'
@@ -67,13 +70,15 @@ const Form = () => {
         </Col>
       </FormGroup>
       <FormGroup className='row'>
-        <Label for='hours' sm={2}>
+        <Label for='hoursNeeded' sm={2}>
           Hours Needed
         </Label>
         <Col sm={4}>
           <Input
-            type='number'
+            type='text'
             name='hoursNeeded'
+            maxLength='3'
+            pattern='\d*'
             value={hoursNeeded}
             id='hoursNeeded'
             placeholder='0'
