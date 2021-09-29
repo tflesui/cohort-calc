@@ -10,13 +10,18 @@ Given a list of students with revenue potentials and hours of instruction needed
 
 Check it out [Live](https://cohort-calc.netlify.app)
 
+To test out the code:  Clone, Fork, or Download this repo. Install dependencies with `npm install`.  Use `npm start` to run the start script.  Testing can be run using `npm test`.
+
 ---
 
 ### Tech Stack
 
--React Hooks( including useContext)
--Bootstrap (Reactstrap)
--React Testing Library
+- Javascript (ES6)
+- React Hooks
+  - useContext
+  - JSX
+- Bootstrap (Reactstrap)
+- React Testing Library
 
 ### The Approach
 
