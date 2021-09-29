@@ -33,7 +33,7 @@ The last major step to work on was to implement a few unit tests for the code.  
 
 ### Conclusion
 
-This project ended up being much more challenging than first thought of.  Implementation of the algorithm and working with the React Testing Library consumed the most time.  The Reacstrap library was very useful in fulfilling the requirement of making this app responsive.  Lastly, learning about and successfully using the useContext React hook was by far the most enjoyable part of building out this project.
+This project ended up being much more challenging than first thought of.  Implementation of the algorithm and working with the React Testing Library consumed the most time.  The Reactstrap library was very useful in fulfilling the requirement of making this app responsive.  Lastly, learning about and successfully using the useContext React hook was by far the most enjoyable part of building out this project.
 
 Cheers!
   
