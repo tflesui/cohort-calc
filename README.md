@@ -25,9 +25,9 @@ To test out the code:  Clone, Fork, or Download this repo. Install dependencies 
 
 ### The Approach
 
-On first explanation, this project seemed very doable and my first question was related to data requirements.  After learning about the freedom to choose how the data is brought in, my thoughts were use local storage or maybe the useReducer hook, of which I had experience with both.  Further research led me to the useContext hook, which seemed perfect for this project and ended up being the choice to manage state (data).
+On first explanation, this project seemed very doable and my first question was related to data requirements.  After learning about the freedom to choose how the data is brought in, my thoughts were to use local storage or maybe the useReducer hook, of which I had experience with both.  Further research led me to the useContext hook, which seemed perfect for this project and ended up being the choice to manage state (data).
 
-After building a scaffold of the layout with Bootstrap/Reactstrap components, the next problem to tackle was the logic.  At this point in the project, I quickly realized that the algorithm to satisfy the project requirements would make this app much more challenging than initially imagined.  Researching algorithms and dynamic programming yielded the appropriate algorithm and the work to re-structure the code began.
+After building a scaffold of the layout with Bootstrap/Reactstrap components, the next problem to tackle was the logic.  At this point in the project, I quickly realized that the algorithm to satisfy the project requirements would make this app much more challenging than initially imagined.  Researching algorithms and dynamic programming yielded the appropriate algorithm and the work to restructure the code began.
 
 The last major step to work on was to implement a few unit tests for the code.  Testing the components was accomplished through the React Testing Library.  Previous unit testing experience is with Jest, so using the React Testing Library was a first for me and a worthwhile experience.
 
