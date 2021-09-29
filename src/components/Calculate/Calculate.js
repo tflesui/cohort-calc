@@ -9,9 +9,6 @@ const Calculate = () => {
   const [total, setTotal] = useState(0);
   const [finalCohort, setFinalCohort] = useState([])
 
-  // const earningsArr = students.map(student => parseFloat(student.earnings));
-  // const hrsNeededArr = students.map(student => student.hoursNeeded);
-
   const calcCohort = (cohort, maxHrs) => {    
     // This implementation uses dynamic programming.
     // Variable 'memo' is a grid(2-dimentional array) to store optimal solution for sub-problems,
