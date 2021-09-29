@@ -1,70 +1,35 @@
-# Getting Started with Create React App
+# Cohort Calc
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A responsive Single Page Web Application built with ReactJS!
 
-## Available Scripts
+### Project Overview
 
-In the project directory, you can run:
+Given a list of students with revenue potentials and hours of instruction needed, as well as max instruction hours per cohort, find the maximum earnings you can generate from the student cohort where the sum of the instruction hours are less than or equal to the max instruction hours.
 
-### `npm start`
+## Demo
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Check it out [Live](https://cohort-calc.netlify.app)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+---
 
-### `npm test`
+### Tech Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+-React Hooks( including useContext)
+-Bootstrap (Reactstrap)
+-React Testing Library
 
-### `npm run build`
+### The Approach
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+On first explanation, this project seemed very doable and my first question was related to data requirements.  After learning about the freedom to choose how the data is brought in, my thoughts were use local storage or maybe the useReducer hook, of which I had experience with both.  Further research led me to the useContext hook, which seemed perfect for this project and ended up being the choice to manage state (data).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+After building a scaffold of the layout with Bootstrap/Reactstrap components, the next problem to tackle was the logic.  At this point in the project, I quickly realized that the algorithm to satisfy the project requirements would make this app much more challenging than initially imagined.  Researching algorithms and dynamic programming yielded the appropriate algorithm and the work to re-structure the code began.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The last major step to work on was to implement a few unit tests for the code.  Testing the components was accomplished through the React Testing Library.  Previous unit testing experience is with Jest, so using the React Testing Library was a first for me and a worthwhile experience.
 
-### `npm run eject`
+### Conclusion
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+This project ended up being much more challenging than first thought of.  Implementation of the algorithm and working with the React Testing Library consumed the most time.  The Reacstrap library was very useful in fulfilling the requirement of making this app responsive.  Lastly, learning about and successfully using the useContext React hook was by far the most enjoyable part of building out this project.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Cheers!
+  
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
