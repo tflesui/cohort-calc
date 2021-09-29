@@ -5,7 +5,7 @@ import App from '../../App';
 
 afterEach(cleanup)
 
-describe('Student Table Test', () => {
+describe('Student Info Test', () => {
   it('should render to screen', () => {
     const { getByText } = render(
       <App>
